@@ -1,0 +1,149 @@
+:root {
+  color-scheme: dark;
+  color: #e7edf4;
+  background: #08111f;
+  font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  font-smooth: always;
+  font-weight: 400;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: radial-gradient(circle at top, rgba(52, 152, 219, 0.18), transparent 30%),
+    linear-gradient(180deg, #08111f 0%, #050911 100%);
+}
+
+button,
+input {
+  font: inherit;
+}
+
+.app-shell {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 32px 24px 48px;
+}
+
+.app-header {
+  padding: 36px 28px;
+  margin-bottom: 24px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 28px;
+  background: rgba(8, 17, 31, 0.78);
+  backdrop-filter: blur(14px);
+}
+
+.eyebrow {
+  margin: 0 0 14px;
+  text-transform: uppercase;
+  letter-spacing: 0.26em;
+  font-size: 0.82rem;
+  color: #6dbef8;
+}
+
+h1 {
+  margin: 0;
+  font-size: clamp(2.4rem, 3vw, 4rem);
+  line-height: 1.05;
+}
+
+.hero-copy {
+  margin: 18px 0 0;
+  max-width: 680px;
+  line-height: 1.75;
+  color: #c8d7ea;
+}
+
+.content-grid {
+  display: grid;
+  gap: 24px;
+}
+
+.panel {
+  padding: 28px;
+  border-radius: 24px;
+  background: rgba(9, 17, 28, 0.86);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.controls {
+  display: grid;
+  gap: 18px;
+}
+
+.controls label {
+  display: grid;
+  gap: 10px;
+  font-size: 0.95rem;
+  color: #d4dbe8;
+}
+
+.controls input {
+  width: 100%;
+  padding: 12px 14px;
+  border-radius: 14px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(16, 27, 43, 0.95);
+  color: #f5f9ff;
+}
+
+.button-row {
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+
+button {
+  padding: 14px 22px;
+  border: none;
+  border-radius: 16px;
+  cursor: pointer;
+  background: linear-gradient(135deg, #52b0ff, #5cd6ff);
+  color: #062033;
+  font-weight: 700;
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.18);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+button:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 22px 52px rgba(0, 0, 0, 0.24);
+}
+
+.output {
+  display: grid;
+  gap: 20px;
+}
+
+.canvas-card {
+  padding: 18px;
+  border-radius: 22px;
+  background: rgba(4, 10, 18, 0.95);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+}
+
+canvas {
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+  background: #07101e;
+  border-radius: 18px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.note {
+  margin: 0;
+  color: #98a7bf;
+  font-size: 0.93rem;
+}
+
+@media (min-width: 900px) {
+  .content-grid {
+    grid-template-columns: 320px minmax(0, 1fr);
+  }
+}
