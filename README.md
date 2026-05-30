@@ -1,6 +1,6 @@
 # DSP Visualizer
 
-A clean, portfolio-ready web application that helps electronics and communications engineering students explore the fundamentals of digital signal processing.
+A clean web application that helps electronics and communications engineering students explore the fundamentals of digital signal processing.
 
 ## Project Overview
 
@@ -10,7 +10,7 @@ It includes:
 - Interactive sine wave generation
 - A waveform plotting canvas
 - A placeholder FFT module to illustrate where spectral analysis is implemented
-- A modern engineering portfolio presentation style
+- A modern, clean presentation style
 
 ## Tech Stack
 
@@ -48,6 +48,6 @@ Then open `http://localhost:8000/public/index.html` in your browser.
 - Add frequency slider animation and real-time updates
 - Add export options for waveform and spectrum images
 
-## Why this belongs in a portfolio
+## Project Summary
 
-This project showcases practical DSP fundamentals while demonstrating modern front-end development skills. It is a strong example for an ECE portfolio because it connects engineering concepts with interactive visualization and clean UI design.
+This project showcases practical DSP fundamentals while demonstrating modern front-end development skills. It connects engineering concepts with interactive visualization and clean UI design.
