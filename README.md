@@ -1,6 +1,6 @@
 # DSP Visualizer
 
-A clean web application that helps electronics and communications engineering students explore the fundamentals of digital signal processing.
+A lightweight, interactive web utility designed to visualize digital signals and explore core signal processing principles. This application provides a real-time environment for generating waveforms and performing spectral analysis, serving as a practical tool for educational research and signal data simulation.
 
 ## Project Overview
 
@@ -48,6 +48,6 @@ Then open `http://localhost:8000/public/index.html` in your browser.
 - Add frequency slider animation and real-time updates
 - Add export options for waveform and spectrum images
 
-## Project Summary
+## Project Overview
 
-This project showcases practical DSP fundamentals while demonstrating modern front-end development skills. It connects engineering concepts with interactive visualization and clean UI design.
+This utility provides a robust framework for digital signal visualization, bridging the gap between theoretical signal processing and interactive front-end implementation. It is engineered to deliver high-performance waveform rendering and provides an extensible architecture for implementing advanced spectral analysis algorithms.
