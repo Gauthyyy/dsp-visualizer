@@ -48,6 +48,6 @@ Then open `http://localhost:8000/public/index.html` in your browser.
 - Add frequency slider animation and real-time updates
 - Add export options for waveform and spectrum images
 
-## Project Overview
+## Project Summary
 
 This utility provides a robust framework for digital signal visualization, bridging the gap between theoretical signal processing and interactive front-end implementation. It is engineered to deliver high-performance waveform rendering and provides an extensible architecture for implementing advanced spectral analysis algorithms.
