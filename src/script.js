@@ -112,19 +112,11 @@ function refreshVisualization() {
   console.log('Refreshing visualization with config:', config);
   const signal = generateSineWave(config);
   drawWaveform(signal);
+  drawSpectrum(computeSpectrum(signal, config.sampleRate));
 }
 
 function handleFFT() {
-  const config = {
-    frequency: Number(frequencyInput.value),
-    amplitude: Number(amplitudeInput.value),
-    sampleRate: Number(sampleRateInput.value),
-    duration: Number(durationInput.value),
-  };
-
-  const signal = generateSineWave(config);
-  const spectrum = computeSpectrum(signal, config.sampleRate);
-  drawSpectrum(spectrum);
+  refreshVisualization();
 }
 
 window.addEventListener('DOMContentLoaded', () => {
