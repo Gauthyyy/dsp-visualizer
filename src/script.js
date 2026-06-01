@@ -47,8 +47,8 @@ function computeSpectrum(signal, sampleRate) {
 }
 
 function drawWaveform(signal) {
-  const displayWidth = 800;
-  const displayHeight = 240;
+  const displayWidth = waveCanvas.clientWidth;
+  const displayHeight = waveCanvas.clientHeight;
   console.log('Drawing waveform, signal length:', signal.length);
   waveContext.clearRect(0, 0, displayWidth, displayHeight);
   waveContext.strokeStyle = '#6bd9ff';
@@ -73,8 +73,8 @@ function drawWaveform(signal) {
 }
 
 function drawSpectrum({ frequencies, magnitudes }) {
-  const displayWidth = 800;
-  const displayHeight = 240;
+  const displayWidth = spectrumCanvas.clientWidth;
+  const displayHeight = spectrumCanvas.clientHeight;
   spectrumContext.clearRect(0, 0, displayWidth, displayHeight);
   spectrumContext.fillStyle = 'rgba(85, 192, 255, 0.14)';
   const barWidth = displayWidth / frequencies.length;
