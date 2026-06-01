@@ -61,7 +61,3 @@ npm run build
 ## Contributing
 
 Contributions are welcome. Please open issues or PRs for bug fixes, improvements, or feature ideas.
-
-## License
-
-MIT — update or add a different license file if needed.
