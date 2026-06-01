@@ -47,10 +47,18 @@ function computeSpectrum(signal, sampleRate) {
 }
 
 function drawWaveform(signal) {
-  const displayWidth = waveCanvas.clientWidth;
-  const displayHeight = waveCanvas.clientHeight;
+  const dpr = window.devicePixelRatio || 1;
+  const displayWidth = waveCanvas.width / dpr;
+  const displayHeight = waveCanvas.height / dpr;
   console.log('Drawing waveform, signal length:', signal.length);
   waveContext.clearRect(0, 0, displayWidth, displayHeight);
+  waveContext.strokeStyle = 'rgba(255, 255, 255, 0.2)';
+  waveContext.lineWidth = 1;
+  waveContext.beginPath();
+  waveContext.moveTo(0, displayHeight / 2);
+  waveContext.lineTo(displayWidth, displayHeight / 2);
+  waveContext.stroke();
+
   waveContext.strokeStyle = '#6bd9ff';
   waveContext.lineWidth = 2;
   waveContext.beginPath();
@@ -73,10 +81,11 @@ function drawWaveform(signal) {
 }
 
 function drawSpectrum({ frequencies, magnitudes }) {
-  const displayWidth = spectrumCanvas.clientWidth;
-  const displayHeight = spectrumCanvas.clientHeight;
+  const dpr = window.devicePixelRatio || 1;
+  const displayWidth = spectrumCanvas.width / dpr;
+  const displayHeight = spectrumCanvas.height / dpr;
   spectrumContext.clearRect(0, 0, displayWidth, displayHeight);
-  spectrumContext.fillStyle = 'rgba(85, 192, 255, 0.14)';
+  spectrumContext.fillStyle = 'rgba(85, 192, 255, 0.85)';
   const barWidth = displayWidth / frequencies.length;
 
   const maxMag = Math.max(...magnitudes) || 1;
