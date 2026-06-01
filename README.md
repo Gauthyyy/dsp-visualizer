@@ -1,61 +1,67 @@
 # DSP Visualizer
 
-[![CI](https://github.com/OWNER/REPO/actions/workflows/ci.yml/badge.svg)](https://github.com/OWNER/REPO/actions)
+[![CI](https://github.com/Gauthyyy/dsp-visualizer/actions/workflows/ci.yml/badge.svg)](https://github.com/Gauthyyy/dsp-visualizer/actions)
 
-A lightweight, interactive web utility for exploring time- and frequency-domain behavior of simple signals.
+A lightweight interactive web app for visualizing digital signals in the time and frequency domains.
 
-Features
-- Interactive sine wave generator with amplitude, frequency, sample-rate, and duration controls
-- Time-domain waveform canvas (HiDPI-aware)
-- Frequency-domain spectrum using a built-in radix-2 FFT with Hann windowing
-- Small, dependency-free FFT implementation suitable for education and demos
+## Features
 
-Quick start
+- Interactive sine wave generator with frequency, amplitude, sample rate, and duration controls
+- Time-domain waveform rendering using HTML5 Canvas
+- Frequency-domain spectrum analysis using a built-in radix-2 FFT implementation
+- HiDPI-aware canvas scaling for crisp rendering on high-resolution screens
+- Local development support with Vite and automated FFT tests
 
-Development (recommended):
+## Quick Start
+
+### Development
 
 ```bash
 cd dsp-visualizer
 npm install
 npm run dev
-# open the URL printed by Vite (usually http://localhost:5173)
 ```
 
-Run as a simple static site:
+Then open the URL printed by Vite (usually `http://localhost:5173`).
+
+### Static Preview
 
 ```bash
 cd dsp-visualizer
 python -m http.server 8000
-# open http://localhost:8000/public/index.html
 ```
 
-Usage
-- Open the app and use the left-hand controls to set `Frequency`, `Amplitude`, `Sample Rate`, and `Duration`.
-- Click **Draw Sine Wave** to render the waveform.
-- Click **Run FFT** to compute and display the spectrum.
+Open `http://localhost:8000/public/index.html` in your browser.
 
-Testing
+## Usage
 
-There is a small automated test that generates a known tone and verifies the FFT peak:
+1. Open the app in your browser.
+2. Set `Frequency`, `Amplitude`, `Sample Rate`, and `Duration`.
+3. Click **Draw Sine Wave** to render the waveform.
+4. Click **Run FFT** to compute and display the frequency spectrum as bars.
+
+## Testing
+
+Run the automated FFT test:
 
 ```bash
 npm test
 ```
 
-Build
+This test generates a known sine tone and verifies the FFT peak location.
+
+## Build
+
+Create a production build with:
 
 ```bash
 npm run build
 ```
 
-Contributing
+## Contributing
 
-Contributions are welcome. Create issues or PRs for bug fixes, improvements, or feature requests. For larger changes, open an issue first to discuss the design.
+Contributions are welcome. Please open issues or PRs for bug fixes, improvements, or feature ideas.
 
-Badge
+## License
 
-Replace `OWNER/REPO` in the CI badge URL at the top of this file with your GitHub repository path (for example `gauja/dsp-visualizer`) so the badge shows your workflow status.
-
-License
-
-MIT — change or add a different license file if needed.
+MIT — update or add a different license file if needed.
