@@ -1,53 +1,61 @@
 # DSP Visualizer
 
-A lightweight, interactive web utility designed to visualize digital signals and explore core signal processing principles. This application provides a real-time environment for generating waveforms and performing spectral analysis, serving as a practical tool for educational research and signal data simulation.
+[![CI](https://github.com/OWNER/REPO/actions/workflows/ci.yml/badge.svg)](https://github.com/OWNER/REPO/actions)
 
-## Project Overview
+A lightweight, interactive web utility for exploring time- and frequency-domain behavior of simple signals.
 
-This project is a web-based signal visualizer designed to demonstrate the relationship between time-domain waveforms and frequency-domain analysis.
+Features
+- Interactive sine wave generator with amplitude, frequency, sample-rate, and duration controls
+- Time-domain waveform canvas (HiDPI-aware)
+- Frequency-domain spectrum using a built-in radix-2 FFT with Hann windowing
+- Small, dependency-free FFT implementation suitable for education and demos
 
-It includes:
-- Interactive sine wave generation
-- A waveform plotting canvas
-- A placeholder FFT module to illustrate where spectral analysis is implemented
-- A modern, clean presentation style
+Quick start
 
-## Tech Stack
+Development (recommended):
 
-- HTML for structure
-- CSS for a clean, glassmorphic design
-- JavaScript for signal generation and visualization logic
-- Canvas API for waveform and spectrum rendering
+```bash
+cd dsp-visualizer
+npm install
+npm run dev
+# open the URL printed by Vite (usually http://localhost:5173)
+```
 
-## Getting Started
-
-### Option 1: Open locally
-
-1. Open `public/index.html` in your browser.
-2. Use the controls to change frequency, amplitude, sample rate, and duration.
-3. Click **Draw Sine Wave** to update the waveform.
-4. Click **Run FFT** to preview the spectrum placeholder.
-
-### Option 2: Run with a local web server
-
-A local server is recommended for the best development experience.
-
-Using Python 3:
+Run as a simple static site:
 
 ```bash
 cd dsp-visualizer
 python -m http.server 8000
+# open http://localhost:8000/public/index.html
 ```
 
-Then open `http://localhost:8000/public/index.html` in your browser.
+Usage
+- Open the app and use the left-hand controls to set `Frequency`, `Amplitude`, `Sample Rate`, and `Duration`.
+- Click **Draw Sine Wave** to render the waveform.
+- Click **Run FFT** to compute and display the spectrum.
 
-## Future Enhancements
+Testing
 
-- Replace the placeholder FFT with a full FFT algorithm or library
-- Add signal types like square, triangle, and sawtooth
-- Add frequency slider animation and real-time updates
-- Add export options for waveform and spectrum images
+There is a small automated test that generates a known tone and verifies the FFT peak:
 
-## Project Summary
+```bash
+npm test
+```
 
-This utility provides a robust framework for digital signal visualization, bridging the gap between theoretical signal processing and interactive front-end implementation. It is engineered to deliver high-performance waveform rendering and provides an extensible architecture for implementing advanced spectral analysis algorithms.
+Build
+
+```bash
+npm run build
+```
+
+Contributing
+
+Contributions are welcome. Create issues or PRs for bug fixes, improvements, or feature requests. For larger changes, open an issue first to discuss the design.
+
+Badge
+
+Replace `OWNER/REPO` in the CI badge URL at the top of this file with your GitHub repository path (for example `gauja/dsp-visualizer`) so the badge shows your workflow status.
+
+License
+
+MIT — change or add a different license file if needed.

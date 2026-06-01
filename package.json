@@ -1,0 +1,15 @@
+{
+  "name": "dsp-visualizer",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite public",
+    "build": "vite build public --outDir dist",
+    "preview": "vite preview --port 5000 --strictPort",
+    "test": "node test/test_fft.js"
+  },
+  "devDependencies": {
+    "vite": "^5.2.0"
+  }
+}
