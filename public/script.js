@@ -24,7 +24,7 @@ function setupCanvasesForDPR() {
     canvas.style.height = `${h}px`;
     
     const ctx = canvas.getContext('2d');
-    ctx.scale(dpr, dpr);
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
   });
   
   console.log('Canvas DPR setup complete. DPR:', dpr);
