@@ -43,21 +43,7 @@ function generateSineWave({ frequency = 5, amplitude = 1, sampleRate = 256, dura
 }
 
 function computeSpectrum(signal, sampleRate) {
-  try {
-    return fftReal(signal, sampleRate);
-  } catch (e) {
-    console.warn('fftReal failed, falling back to placeholder:', e);
-    const length = signal.length;
-    const spectrum = new Array(Math.floor(length / 2)).fill(0);
-    const estimatedPeak = Math.round(signal.length / 10);
-    if (spectrum[estimatedPeak] !== undefined) {
-      spectrum[estimatedPeak] = Math.max(...signal.map(Math.abs));
-    }
-    return {
-      frequencies: spectrum.map((_, index) => index * (sampleRate / length)),
-      magnitudes: spectrum,
-    };
-  }
+  return fftReal(signal, sampleRate);
 }
 
 function drawWaveform(signal) {
