@@ -101,28 +101,33 @@ function drawSpectrum({ frequencies, magnitudes }) {
   }
 }
 
-function refreshVisualization() {
-  const config = {
+function getConfig() {
+  return {
     frequency: Number(frequencyInput.value),
     amplitude: Number(amplitudeInput.value),
     sampleRate: Number(sampleRateInput.value),
     duration: Number(durationInput.value),
   };
+}
 
+function refreshVisualization() {
+  const config = getConfig();
   console.log('Refreshing visualization with config:', config);
   const signal = generateSineWave(config);
   drawWaveform(signal);
-  drawSpectrum(computeSpectrum(signal, config.sampleRate));
 }
 
 function handleFFT() {
-  refreshVisualization();
+  const config = getConfig();
+  const signal = generateSineWave(config);
+  drawSpectrum(computeSpectrum(signal, config.sampleRate));
 }
 
 window.addEventListener('DOMContentLoaded', () => {
   console.log('DOMContentLoaded fired');
   setupCanvasesForDPR();
   refreshVisualization();
+  handleFFT();
   drawWaveBtn.addEventListener('click', refreshVisualization);
   fftBtn.addEventListener('click', handleFFT);
 
@@ -132,6 +137,7 @@ window.addEventListener('DOMContentLoaded', () => {
     resizeTimer = setTimeout(() => {
       setupCanvasesForDPR();
       refreshVisualization();
+      handleFFT();
     }, 150);
   });
 });
