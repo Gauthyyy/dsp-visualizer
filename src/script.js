@@ -24,7 +24,7 @@ function setupCanvasesForDPR() {
     canvas.style.height = `${h}px`;
     
     const ctx = canvas.getContext('2d');
-    ctx.scale(dpr, dpr);
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
   });
   
   console.log('Canvas DPR setup complete. DPR:', dpr);
@@ -43,28 +43,22 @@ function generateSineWave({ frequency = 5, amplitude = 1, sampleRate = 256, dura
 }
 
 function computeSpectrum(signal, sampleRate) {
-  try {
-    return fftReal(signal, sampleRate);
-  } catch (e) {
-    console.warn('fftReal failed, falling back to placeholder:', e);
-    const length = signal.length;
-    const spectrum = new Array(Math.floor(length / 2)).fill(0);
-    const estimatedPeak = Math.round(signal.length / 10);
-    if (spectrum[estimatedPeak] !== undefined) {
-      spectrum[estimatedPeak] = Math.max(...signal.map(Math.abs));
-    }
-    return {
-      frequencies: spectrum.map((_, index) => index * (sampleRate / length)),
-      magnitudes: spectrum,
-    };
-  }
+  return fftReal(signal, sampleRate);
 }
 
 function drawWaveform(signal) {
-  const displayWidth = 800;
-  const displayHeight = 240;
+  const dpr = window.devicePixelRatio || 1;
+  const displayWidth = waveCanvas.width / dpr;
+  const displayHeight = waveCanvas.height / dpr;
   console.log('Drawing waveform, signal length:', signal.length);
   waveContext.clearRect(0, 0, displayWidth, displayHeight);
+  waveContext.strokeStyle = 'rgba(255, 255, 255, 0.2)';
+  waveContext.lineWidth = 1;
+  waveContext.beginPath();
+  waveContext.moveTo(0, displayHeight / 2);
+  waveContext.lineTo(displayWidth, displayHeight / 2);
+  waveContext.stroke();
+
   waveContext.strokeStyle = '#6bd9ff';
   waveContext.lineWidth = 2;
   waveContext.beginPath();
@@ -87,10 +81,11 @@ function drawWaveform(signal) {
 }
 
 function drawSpectrum({ frequencies, magnitudes }) {
-  const displayWidth = 800;
-  const displayHeight = 240;
+  const dpr = window.devicePixelRatio || 1;
+  const displayWidth = spectrumCanvas.width / dpr;
+  const displayHeight = spectrumCanvas.height / dpr;
   spectrumContext.clearRect(0, 0, displayWidth, displayHeight);
-  spectrumContext.fillStyle = 'rgba(85, 192, 255, 0.14)';
+  spectrumContext.fillStyle = 'rgba(85, 192, 255, 0.85)';
   const barWidth = displayWidth / frequencies.length;
 
   const maxMag = Math.max(...magnitudes) || 1;
@@ -106,36 +101,33 @@ function drawSpectrum({ frequencies, magnitudes }) {
   }
 }
 
-function refreshVisualization() {
-  const config = {
+function getConfig() {
+  return {
     frequency: Number(frequencyInput.value),
     amplitude: Number(amplitudeInput.value),
     sampleRate: Number(sampleRateInput.value),
     duration: Number(durationInput.value),
   };
+}
 
+function refreshVisualization() {
+  const config = getConfig();
   console.log('Refreshing visualization with config:', config);
   const signal = generateSineWave(config);
   drawWaveform(signal);
 }
 
 function handleFFT() {
-  const config = {
-    frequency: Number(frequencyInput.value),
-    amplitude: Number(amplitudeInput.value),
-    sampleRate: Number(sampleRateInput.value),
-    duration: Number(durationInput.value),
-  };
-
+  const config = getConfig();
   const signal = generateSineWave(config);
-  const spectrum = computeSpectrum(signal, config.sampleRate);
-  drawSpectrum(spectrum);
+  drawSpectrum(computeSpectrum(signal, config.sampleRate));
 }
 
 window.addEventListener('DOMContentLoaded', () => {
   console.log('DOMContentLoaded fired');
   setupCanvasesForDPR();
   refreshVisualization();
+  handleFFT();
   drawWaveBtn.addEventListener('click', refreshVisualization);
   fftBtn.addEventListener('click', handleFFT);
 
@@ -145,6 +137,7 @@ window.addEventListener('DOMContentLoaded', () => {
     resizeTimer = setTimeout(() => {
       setupCanvasesForDPR();
       refreshVisualization();
+      handleFFT();
     }, 150);
   });
 });
