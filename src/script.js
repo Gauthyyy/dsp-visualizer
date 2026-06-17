@@ -88,7 +88,13 @@ function drawSpectrum({ frequencies, magnitudes }) {
   spectrumContext.fillStyle = 'rgba(85, 192, 255, 0.85)';
   const barWidth = displayWidth / frequencies.length;
 
-  const maxMag = Math.max(...magnitudes) || 1;
+  let maxMag = -Infinity;
+  for (let i = 0; i < magnitudes.length; i++) {
+    if (magnitudes[i] > maxMag) {
+      maxMag = magnitudes[i];
+    }
+  }
+  maxMag = maxMag === -Infinity || maxMag === 0 ? 1 : maxMag;
 
   for (let index = 0; index < magnitudes.length; index++) {
     const magnitude = magnitudes[index];
