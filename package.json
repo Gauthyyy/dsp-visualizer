@@ -4,8 +4,8 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "dev": "vite public",
-    "build": "vite build public --outDir dist",
+    "dev": "vite",
+    "build": "vite build --outDir dist",
     "preview": "vite preview --port 5000 --strictPort",
     "test": "node test/test_fft.js"
   },

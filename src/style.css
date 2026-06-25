@@ -147,3 +147,44 @@ canvas {
     grid-template-columns: 320px minmax(0, 1fr);
   }
 }
+
+.error-display {
+  background: rgba(231, 76, 60, 0.12);
+  border: 1px solid rgba(231, 76, 60, 0.35);
+  color: #ff6b6b;
+  padding: 14px 18px;
+  border-radius: 16px;
+  font-size: 0.88rem;
+  line-height: 1.5;
+  margin-bottom: 8px;
+  animation: fadeIn 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.controls input {
+  outline: none;
+  transition: border-color 0.25s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.controls input:focus {
+  border-color: #52b0ff;
+  box-shadow: 0 0 0 3px rgba(82, 176, 255, 0.18);
+}
+
+button:disabled {
+  background: #19273c;
+  color: #556c8c;
+  cursor: not-allowed;
+  box-shadow: none;
+  transform: none;
+}
+
+button:active:not(:disabled) {
+  transform: translateY(1px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+}
+
