@@ -132,10 +132,7 @@ function getConfig() {
 }
 
 function validateInputs() {
-  const frequency = Number(frequencyInput.value);
-  const amplitude = Number(amplitudeInput.value);
-  const sampleRate = Number(sampleRateInput.value);
-  const duration = Number(durationInput.value);
+  const { frequency, amplitude, sampleRate, duration } = getConfig();
 
   const errors = [];
 
