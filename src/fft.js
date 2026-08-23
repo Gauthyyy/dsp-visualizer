@@ -129,6 +129,7 @@ function fftReal(signal, sampleRate) {
   const magnitudes = new Float64Array(half);
   const freqs = new Float64Array(half);
   const normFactor = 1 / N;
+  const freqFactor = sampleRate * normFactor;
 
   for (let k = 0; k < half; k++) {
     const re = real[k];
@@ -137,7 +138,7 @@ function fftReal(signal, sampleRate) {
     let mag = Math.sqrt(re * re + im * im) * normFactor;
     if (k > 0) mag *= 2;
     magnitudes[k] = mag;
-    freqs[k] = (k * sampleRate) * normFactor;
+    freqs[k] = k * freqFactor;
   }
 
   return {
