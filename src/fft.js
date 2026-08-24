@@ -44,8 +44,9 @@ function getFftCache(n) {
   const half = n / 2;
   const cosTable = new Float64Array(half);
   const sinTable = new Float64Array(half);
+  const factor = -2 * Math.PI / n;
   for (let i = 0; i < half; i++) {
-    const ang = -2 * Math.PI * i / n;
+    const ang = i * factor;
     cosTable[i] = Math.cos(ang);
     sinTable[i] = Math.sin(ang);
   }
