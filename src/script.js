@@ -27,8 +27,6 @@ function setupCanvasesForDPR() {
     const ctx = canvas.getContext('2d');
     ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
   });
-  
-  console.log('Canvas DPR setup complete. DPR:', dpr);
 }
 
 function generateSineWave({ frequency = 5, amplitude = 1, sampleRate = 256, duration = 1 }) {
@@ -51,7 +49,6 @@ function drawWaveform(signal) {
   const dpr = window.devicePixelRatio || 1;
   const displayWidth = waveCanvas.width / dpr;
   const displayHeight = waveCanvas.height / dpr;
-  console.log('Drawing waveform, signal length:', signal.length);
   waveContext.clearRect(0, 0, displayWidth, displayHeight);
   
   // Draw center guide line
@@ -85,7 +82,6 @@ function drawWaveform(signal) {
   }
 
   waveContext.stroke();
-  console.log('Waveform drawn.');
 }
 
 function drawSpectrum({ frequencies, magnitudes }) {
@@ -184,7 +180,6 @@ function validateInputs() {
 function refreshVisualization() {
   if (!validateInputs()) return;
   const config = getConfig();
-  console.log('Refreshing visualization with config:', config);
   const signal = generateSineWave(config);
   drawWaveform(signal);
 }
@@ -197,7 +192,6 @@ function handleFFT() {
 }
 
 window.addEventListener('DOMContentLoaded', () => {
-  console.log('DOMContentLoaded fired');
   setupCanvasesForDPR();
   
   // Bind live input validation
