@@ -41,10 +41,6 @@ function generateSineWave({ frequency = 5, amplitude = 1, sampleRate = 256, dura
   return signal;
 }
 
-function computeSpectrum(signal, sampleRate) {
-  return fftReal(signal, sampleRate);
-}
-
 function drawWaveform(signal) {
   const dpr = window.devicePixelRatio || 1;
   const displayWidth = waveCanvas.width / dpr;
@@ -188,7 +184,7 @@ function handleFFT() {
   if (!validateInputs()) return;
   const config = getConfig();
   const signal = generateSineWave(config);
-  drawSpectrum(computeSpectrum(signal, config.sampleRate));
+  drawSpectrum(fftReal(signal, config.sampleRate));
 }
 
 window.addEventListener('DOMContentLoaded', () => {
