@@ -19,6 +19,20 @@ function findPeakFrequency(result) {
   return { index: maxIdx, frequency: frequencies[maxIdx], magnitude: magnitudes[maxIdx] };
 }
 
+let allPassed = true;
+
+// --- Test 1: Empty Signal ---
+const emptySignal = new Float64Array(0);
+const emptyResult = fftReal(emptySignal, 1024);
+if (emptyResult.frequencies && emptyResult.frequencies.length === 0 &&
+    emptyResult.magnitudes && emptyResult.magnitudes.length === 0) {
+  console.log('FFT empty signal: PASS');
+} else {
+  console.error('FFT empty signal: FAIL (Expected length 0 for both frequencies and magnitudes)');
+  allPassed = false;
+}
+
+// --- Test 2: Peak Detection ---
 const sampleRate = 1024;
 const toneFreq = 50; // Hz
 const duration = 1; // second
@@ -36,8 +50,13 @@ const tol = Math.max(resolution, 1e-6);
 
 if (Math.abs(peak.frequency - toneFreq) <= tol) {
   console.log('FFT peak detection: PASS (within', tol, 'Hz)');
-  process.exit(0);
 } else {
   console.error('FFT peak detection: FAIL (tolerance', tol, 'Hz)');
+  allPassed = false;
+}
+
+if (allPassed) {
+  process.exit(0);
+} else {
   process.exit(2);
 }
